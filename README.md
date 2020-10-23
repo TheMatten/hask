@@ -7,3 +7,4 @@ Funny little Haskell implementation. The goal is a highly annotated and _simple_
 - https://www.microsoft.com/en-us/research/publication/the-implementation-of-functional-programming-languages/
 - https://www.microsoft.com/en-us/research/publication/implementing-functional-languages-a-tutorial/
 - https://www.microsoft.com/en-us/research/publication/implementing-lazy-functional-languages-on-stock-hardware-the-spineless-tagless-g-machine/
+- https://gitlab.haskell.org/ghc/ghc/blob/master/docs/core-spec/core-spec.pdf
