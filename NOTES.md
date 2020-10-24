@@ -6,7 +6,6 @@
 
 - [Haskell 98 Language and Libraries: The Revised Report](https://www.haskell.org/onlinereport/index.html)
 - [The Haskell 2010 Report](http://www.haskell.org/onlinereport/haskell2010)
-
 - [Typing Haskell in Haskell (MD version)](https://gist.github.com/chrisdone/0075a16b32bfd4f62b7b)
 - [A static semantics for Haskell](https://www.microsoft.com/en-us/research/publication/a-static-semantics-for-haskell/)
 - [The Glasgow Haskell Compiler: a technical overview](https://www.microsoft.com/en-us/research/publication/the-glasgow-haskell-compiler-a-technical-overview/)
@@ -14,19 +13,15 @@
 - [The New GHC/Hugs Runtime System](https://www.microsoft.com/en-us/research/publication/the-new-ghchugs-runtime-system/)
 - [System FC As Implemented in GHC (2020)](https://gitlab.haskell.org/ghc/ghc/blob/master/docs/core-spec/core-spec.pdf)
 - [The Glasgow Haskell Compiler](https://www.microsoft.com/en-us/research/publication/the-glasgow-haskell-compiler/)
-
 - [The Implementation of Functional Programming Languages](https://www.microsoft.com/en-us/research/publication/the-implementation-of-functional-programming-languages/)
 - [Implementing functional languages: a tutorial](https://www.microsoft.com/en-us/research/publication/implementing-functional-languages-a-tutorial/)
 - [λ to SKI, Semantically](http://okmij.org/ftp/tagless-final/ski.pdf)
 - [Calculating Correct Compilers](http://www.cs.nott.ac.uk/~pszgmh/ccc.pdf)
-
 - [Implementing Lazy Functional Languages on Stock Hardware: The Spineless Tagless G-machine](https://www.microsoft.com/en-us/research/publication/implementing-lazy-functional-languages-on-stock-hardware-the-spineless-tagless-g-machine/)
 - [C-: A Portable Assembly Language](https://www.microsoft.com/en-us/research/publication/c-a-portable-assembly-language/)
 - [C–: a portable assembly language that supports garbage collection](https://www.microsoft.com/en-us/research/publication/portable-assembly-language-supports-garbage-collection/)
 - [Imperative functional programming](https://www.microsoft.com/en-us/research/publication/imperative-functional-programming/)
-
 - [Pattern Guards and Transformational Patterns](https://www.microsoft.com/en-us/research/publication/pattern-guards-and-transformational-patterns/)
-
 - [Type classes: an exploration of the design space](https://www.microsoft.com/en-us/research/publication/type-classes-an-exploration-of-the-design-space/)
 - [Lexically scoped type variables](https://www.microsoft.com/en-us/research/publication/lexically-scoped-type-variables/)
 - [Type variables in patterns](https://www.microsoft.com/en-us/research/publication/type-variables-patterns/)
@@ -46,7 +41,6 @@
 - [Equality proofs and deferred type errors](https://www.microsoft.com/en-us/research/publication/equality-proofs-and-deferred-type-errors/)
 - [Typed reflection in Haskell](https://www.microsoft.com/en-us/research/publication/typed-reflection-in-haskell/)
 - [Type inference as constraint solving: how GHC’s type inference engine actually works](https://www.microsoft.com/en-us/research/publication/type-inference-as-constraint-solving-how-ghcs-type-inference-engine-actually-works/)
-
 - [A History of Haskell: being lazy with class](https://www.microsoft.com/en-us/research/publication/a-history-of-haskell-being-lazy-with-class/)
   
 ### Optimization
