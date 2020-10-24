@@ -36,7 +36,10 @@
 - [Equality proofs and deferred type errors](https://www.microsoft.com/en-us/research/publication/equality-proofs-and-deferred-type-errors/)
 - [Typed reflection in Haskell](https://www.microsoft.com/en-us/research/publication/typed-reflection-in-haskell/)
 - [Type inference as constraint solving: how GHC’s type inference engine actually works](https://www.microsoft.com/en-us/research/publication/type-inference-as-constraint-solving-how-ghcs-type-inference-engine-actually-works/)
-
+- [λ to SKI, Semantically](http://okmij.org/ftp/tagless-final/ski.pdf)
+- [Calculating Correct
+  Compilers](http://www.cs.nott.ac.uk/~pszgmh/ccc.pdf)
+  
 ### Optimization
 - [Unboxed values as first class citizens](https://www.microsoft.com/en-us/research/publication/unboxed-values-as-first-class-citizens/)
 - [A modular fully-lazy lambda lifter in Haskell](https://www.microsoft.com/en-us/research/publication/a-modular-fully-lazy-lambda-lifter-in-haskell/)
