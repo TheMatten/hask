@@ -1,0 +1,44 @@
+cabal-version:       2.4
+
+name:                language-hask-source
+version:             0.1.0.0
+synopsis:            parser and AST for source language of Hask
+description:         See README for more information.
+bug-reports:         https://github.com/TheMatten/hask/issues
+license:             GPL-3.0-only
+license-file:        LICENSE
+-- author: TODO
+-- maintainer: TODO
+-- copyright: TODO
+category:            Language
+extra-source-files:  CHANGELOG.md
+
+common common
+  build-depends:       base ^>=4.14.1.0
+                     , text ^>=1.2.3.2
+  default-language:    Haskell2010
+  default-extensions:
+    DataKinds
+    DeriveAnyClass
+    DeriveFunctor
+    DerivingStrategies
+    GADTs
+    ImportQualifiedPost
+    KindSignatures
+    StandaloneDeriving
+  -- other-extensions:
+  ghc-options:
+    -Wall
+    -Werror
+
+library
+  import: common
+  exposed-modules:     Language.Hask.Parsed.AST
+  -- other-modules:
+  hs-source-dirs:      src
+
+test-suite language-hask-source-test
+  import: common
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             MyLibTest.hs
