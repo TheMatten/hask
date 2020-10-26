@@ -4,6 +4,7 @@ name:                language-hask-source
 version:             0.1.0.0
 synopsis:            parser and AST for source language of Hask
 description:         See README for more information.
+homepage:            https://github.com/TheMatten/hask
 bug-reports:         https://github.com/TheMatten/hask/issues
 license:             GPL-3.0-only
 license-file:        LICENSE
@@ -25,6 +26,7 @@ common common
     GADTs
     ImportQualifiedPost
     KindSignatures
+    PatternSynonyms
     StandaloneDeriving
   -- other-extensions:
   ghc-options:

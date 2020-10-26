@@ -21,6 +21,8 @@ module Language.Hask.Parsed.AST
   , NewtypeConstructor (..)
   , DataConstructor (..)
   , Strictness
+  , pattern Strict
+  , pattern Lazy
   , Class (..)
   , Instance (..)
   , Binding (..)
@@ -198,6 +200,14 @@ data DataConstructor = DataConstructor{
 -- | Parsed presence of strictness flag ("bang" @!@).
 type Strictness = Bool
 
+-- | > pattern Strict = True
+pattern Strict :: Strictness
+pattern Strict = True
+
+-- | > pattern Lazy = False
+pattern Lazy :: Strictness
+pattern Lazy = False
+
 -- | Parsed class declaration.
 --
 -- > class $classType where $classDeclarations
@@ -343,9 +353,6 @@ data Value :: ValueUse -> Kind.Type where
   -- > $1 $2
   Application
     :: Expression -> Expression -> Expression
-  -- | Variable or constructor appearing as expression.
-  NameExpression
-    :: Name -> Expression
   -- | Arithmetic sequence.
   --
   -- > [ $1 .. ]
@@ -366,17 +373,20 @@ data Value :: ValueUse -> Kind.Type where
   -- > [ $1 | $2 ]
   Comprehension
     :: Expression -> NonEmpty Qualifier -> Expression
-  -- | Record construction.
-  --
-  -- > $1 { $_ = $_, ... }
-  RecordConstruction
-    :: ConstructorName -> [(VariableName, Expression)] -> Expression
   -- | Record update.
   --
   -- > $1 { $_ = $_, ... }
   RecordUpdate
     :: Expression -> NonEmpty (VariableName, Expression) -> Expression
 
+  -- | Variable or constructor appearing as an expression.
+  NameExpression
+    :: Name -> Value any
+  -- | Constructor used with record syntax.
+  --
+  -- > $1 { $_ = $_, ... }
+  RecordConstructor
+    :: ConstructorName -> [(VariableName, Value any)] -> Value any
   -- | Unit constructor.
   --
   -- > ()
@@ -432,7 +442,7 @@ data Value :: ValueUse -> Kind.Type where
   -- > $1 @ $2
   As
     :: VariableName -> Pattern -> Pattern
-  -- | Constructor pattern.
+  -- | Constructor applied to some patterns.
   --
   -- > ($_ `$2` $_) $_ ...
   --
@@ -440,18 +450,14 @@ data Value :: ValueUse -> Kind.Type where
   --
   -- > ($_ $2 $_) $_ ...
   --
-  -- or
+  -- in case of operator or
   --
   -- > $2 $_ ...
-  --
-  -- or
-  --
-  -- > $2 { $_ = $_, ... }
-  ConstructorPattern -- TODO: some better approach?
+  PatternApplication
     :: Bool
     -- ^ Is constructor name positioned as infix?
     -> ConstructorName
-    -> Either [Pattern] [(VariableName, Pattern)]
+    -> NonEmpty Pattern
     -- ^ Pattern arguments or record syntax.
     -> Pattern
   -- | Irrefutable pattern.
