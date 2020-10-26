@@ -20,9 +20,7 @@ module Language.Hask.Parsed.AST
   , Deriving
   , NewtypeConstructor (..)
   , DataConstructor (..)
-  , Strictness
-  , pattern Strict
-  , pattern Lazy
+  , FieldType (..)
   , Class (..)
   , Instance (..)
   , Binding (..)
@@ -38,10 +36,16 @@ module Language.Hask.Parsed.AST
   , -- * Types
     Type (..)
   , -- * Parsed names
-    ModuleName (..)
+    ModuleName (ModuleName)
+  , moduleNameParts
+  , pattern UnsafeModuleName
   , Qualified (..)
-  , VariableName (..)
-  , ConstructorName (..)
+  , VariableName (VariableName)
+  , variableNameText
+  , pattern UnsafeVariableName
+  , ConstructorName (ConstructorName)
+  , constructorNameText
+  , pattern UnsafeConstructorName
   , Name (..)
     -- * Notes
     -- $ParsedTypeImportLists
@@ -187,7 +191,7 @@ data NewtypeConstructor = NewtypeConstructor{
 -- > $dataConstructorName $dataConstructorFields
 data DataConstructor = DataConstructor{
     dataConstructorName   :: ConstructorName
-  , dataConstructorFields :: Either [Type] [(VariableName, Strictness, Type)]
+  , dataConstructorFields :: Either [FieldType] [(VariableName, FieldType)]
     -- ^ "data" constructor fields, possibly named.
     --
     -- > $_ ...
@@ -197,16 +201,18 @@ data DataConstructor = DataConstructor{
     -- > { $_ :: $_, ... }
   } deriving stock Show
 
--- | Parsed presence of strictness flag ("bang" @!@).
-type Strictness = Bool
-
--- | > pattern Strict = True
-pattern Strict :: Strictness
-pattern Strict = True
-
--- | > pattern Lazy = False
-pattern Lazy :: Strictness
-pattern Lazy = False
+-- | Parsed data constructor field type - that is, 'Type' potentially preceded
+-- with strictness annotation.
+--
+-- > $fieldType
+--
+-- or
+--
+-- > ! $fieldType
+data FieldType = FieldType{
+    fieldStrict :: Bool
+  , fieldType   :: Type
+  } deriving stock Show
 
 -- | Parsed class declaration.
 --
@@ -221,7 +227,7 @@ data Class = Class{
 --
 -- > instance $instanceType where $instanceDefinitions
 data Instance = Instance{
-    instanceType        :: Type
+    instanceType         :: Type
     -- ^ See [Types in declaration heads](#TypesInDeclarationHeads).
   , instanceDeclarations :: [Binding]
     -- ^ See [Bindings in instances](#BindingsInInstances).
@@ -555,8 +561,11 @@ data Type
 
 -------------------------------------------------------------------------------
 -- | Parsed module name.
-newtype ModuleName = ModuleName{ moduleNameParts :: NonEmpty Text }
+newtype ModuleName = UnsafeModuleName (NonEmpty Text)
   deriving stock Show
+
+pattern ModuleName :: NonEmpty Text -> ModuleName
+pattern ModuleName{ moduleNameParts } <- UnsafeModuleName moduleNameParts
 
 -- | Some value enriched with parsed module name - e.g. qualified names in
 -- expressions.
@@ -566,12 +575,17 @@ data Qualified a = Qualified{
   } deriving stock (Functor, Show)
 
 -- | Parsed variable name.
-newtype VariableName = VariableName{ variableNameText :: Text }
-  deriving stock Show
+newtype VariableName = UnsafeVariableName Text deriving stock Show
+
+pattern VariableName :: Text -> VariableName
+pattern VariableName{ variableNameText } <- UnsafeVariableName variableNameText
 
 -- | Parsed constructor name.
-data ConstructorName = ConstructorName{ constructorNameText :: Text }
-  deriving stock Show
+newtype ConstructorName = UnsafeConstructorName Text deriving stock Show
+
+pattern ConstructorName :: Text -> ConstructorName
+pattern ConstructorName{ constructorNameText } <-
+  UnsafeConstructorName constructorNameText
 
 -- | Parsed, qualified name - that is, either (type) variable or (type)
 -- constructor name.
