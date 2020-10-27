@@ -8,9 +8,10 @@ homepage:            https://github.com/TheMatten/hask
 bug-reports:         https://github.com/TheMatten/hask/issues
 license:             GPL-3.0-only
 license-file:        LICENSE
--- author: TODO
--- maintainer: TODO
--- copyright: TODO
+author:              Hask maintainers
+maintainer:          matten@tuta.io
+copyright:           © 2020 Hask maintainers
+stability:           experimental
 category:            Language
 extra-source-files:  CHANGELOG.md
 
